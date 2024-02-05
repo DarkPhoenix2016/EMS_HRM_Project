@@ -3,14 +3,11 @@ package main.customeComponents;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.RenderingHints;
 
 public class RoundedButton extends JButton {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	// Generated serialVersionUID to suppress the warning
+    private static final long serialVersionUID = 1L;
 
 	public RoundedButton(String text) {
         super(text);

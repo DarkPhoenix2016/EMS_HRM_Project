@@ -1,36 +1,26 @@
 package main.views;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JOptionPane;
 
-import main.customeComponents.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+import javax.swing.border.*;
+
+import com.formdev.flatlaf.FlatLightLaf;
+import main.customeComponents.ButtonModern;
+import main.customeComponents.ImageLabel;
+import main.customeComponents.PasswordFieldModern;
+import main.customeComponents.RoundedButton;
+import main.customeComponents.RoundedPanel;
+import main.customeComponents.TextFieldModern;
 import main.models.LoginAuthenticator;
 
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-
-import javax.swing.ImageIcon;
-import javax.swing.BoxLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.SpringLayout;
-import java.awt.Component;
-
-
-public class mainForm extends JFrame {
-
+public class MainForm extends JFrame {
+	// Generated serialVersionUID to suppress the warning
+    private static final long serialVersionUID = 1L;
+    
+    
 	private JPanel contentPane;
 	private int mouseX, mouseY;
 
@@ -38,10 +28,17 @@ public class mainForm extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+		    UIManager.setLookAndFeel( new FlatLightLaf() );
+		    
+		} catch( Exception ex ) {
+		    System.err.println( "Failed to initialize LaF" );
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainForm frame = new mainForm();
+					MainForm frame = new MainForm();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +50,7 @@ public class mainForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public mainForm() {
+	public MainForm() {
 		setTitle("Project EMS");
 		
 		setUndecorated(true);
@@ -107,7 +104,7 @@ public class mainForm extends JFrame {
 		closeButton.setFocusable(false);
 		closeButton.setBorder(null);
 		closeButton.setBackground(new Color(255, 255, 255));
-		closeButton.setIcon(new ImageIcon(mainForm.class.getResource("/main/assets/icons/close-square-black.png")));
+		closeButton.setIcon(new ImageIcon(MainForm.class.getResource("/main/assets/icons/close-square-black.png")));
 		closeButton.setBounds(960, 0, 40, 40);
 		controlPanel.add(closeButton);
 		
@@ -131,7 +128,7 @@ public class mainForm extends JFrame {
 		minimizeButton.setFocusable(false);
 		minimizeButton.setBorder(null);
 		minimizeButton.setBackground(new Color(255, 255, 255));
-		minimizeButton.setIcon(new ImageIcon(mainForm.class.getResource("/main/assets/icons/minus-square-black.png")));
+		minimizeButton.setIcon(new ImageIcon(MainForm.class.getResource("/main/assets/icons/minus-square-black.png")));
 		minimizeButton.setBounds(920, 0, 40, 40);
 		controlPanel.add(minimizeButton);
 		
@@ -164,7 +161,7 @@ public class mainForm extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(36, 87, 416, 284);
-		lblNewLabel.setIcon(new ImageIcon(mainForm.class.getResource("/main/assets/artworks/openartwork.png")));
+		lblNewLabel.setIcon(new ImageIcon(MainForm.class.getResource("/main/assets/artworks/openartwork.png")));
 		panel_2.add(lblNewLabel);
 		
 		JPanel panel_3 = new JPanel();
@@ -172,7 +169,7 @@ public class mainForm extends JFrame {
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Project EMS");
+		JLabel lblNewLabel_1 = new JLabel("HR HUB");
 		lblNewLabel_1.setFont(new Font("Poppins ExtraBold", Font.PLAIN, 24));
 		lblNewLabel_1.setBounds(10, 11, 156, 46);
 		panel_3.add(lblNewLabel_1);
@@ -337,7 +334,7 @@ public class mainForm extends JFrame {
         sl_adminForm.putConstraint(SpringLayout.EAST, adminBackButton, 304, SpringLayout.WEST, adminForm);
         adminBackButton.setHorizontalTextPosition(SwingConstants.CENTER);
         adminBackButton.setIconTextGap(20);
-        adminBackButton.setIcon(new ImageIcon(mainForm.class.getResource("/main/assets/icons/arrow-left-black.png")));
+        adminBackButton.setIcon(new ImageIcon(MainForm.class.getResource("/main/assets/icons/arrow-left-black.png")));
         adminBackButton.setForeground(new Color(0, 0, 0));
         adminBackButton.setFont(new Font("Poppins Light", Font.PLAIN, 14));
         adminBackButton.setBackground(new Color(255, 255, 255));
@@ -432,7 +429,7 @@ public class mainForm extends JFrame {
         sl_employeeForm.putConstraint(SpringLayout.SOUTH, lblNewLabel_8, -92, SpringLayout.NORTH, employeeBackButton);
         employeeBackButton.setHorizontalTextPosition(SwingConstants.CENTER);
         employeeBackButton.setIconTextGap(20);
-        employeeBackButton.setIcon(new ImageIcon(mainForm.class.getResource("/main/assets/icons/arrow-left-black.png")));
+        employeeBackButton.setIcon(new ImageIcon(MainForm.class.getResource("/main/assets/icons/arrow-left-black.png")));
         employeeBackButton.setForeground(new Color(0, 0, 0));
         employeeBackButton.setFont(new Font("Poppins Light", Font.PLAIN, 16));
         employeeBackButton.setBackground(new Color(255, 255, 255));
@@ -492,6 +489,7 @@ public class mainForm extends JFrame {
             }
         });
         
+        //Employee Login data submit
         rndbtnEmployeeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	String username = employeeUsername.getText();

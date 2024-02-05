@@ -3,7 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ImageLabel extends JLabel {
-
+	// Generated serialVersionUID to suppress the warning
+    private static final long serialVersionUID = 1L;
+    
+    
     public ImageLabel(String imagePath, int iconWidth, int iconHeight) {
         loadImage(imagePath, iconWidth, iconHeight);
     }

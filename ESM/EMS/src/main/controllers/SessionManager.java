@@ -16,10 +16,10 @@ public class SessionManager {
         return instance;
     }
 
+    
     public void setLoggedInUsername(String username) {
         this.loggedInUsername = username;
     }
-    
     public void setLoggedInRole(String role) {
         this.loggedInRole = role;
     }
@@ -31,7 +31,8 @@ public class SessionManager {
     public String getLoggedInRole() {
     	return loggedInRole;
     }
-
+    
+    
     public void clearSession() {
         loggedInUsername = null;
         loggedInRole =null;
