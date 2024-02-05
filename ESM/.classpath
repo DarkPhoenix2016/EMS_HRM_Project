@@ -11,8 +11,8 @@
 	<classpathentry kind="lib" path="src/lib/gradient-icon-font.jar"/>
 	<classpathentry kind="lib" path="src/lib/miglayout-4.0.jar"/>
 	<classpathentry kind="lib" path="src/lib/TimingFramework-0.55.jar"/>
-	<classpathentry kind="lib" path="D:/University/Assigments/Semester 03/IT21053 - Object Oriented Programming (P)/Resources/ZIP/jfoenix-9.0.10.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/University/Assigments/Semester 03/IT21053 - Object Oriented Programming (P)/Resources/ZIP/flatlaf-3.2.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/University/Assigments/Semester 03/IT21053 - Object Oriented Programming (P)/Resources/ZIP/flatlaf-intellij-themes-3.2.5.jar"/>
+	<classpathentry kind="lib" path="src/lib/flatlaf-3.2.5.jar"/>
+	<classpathentry kind="lib" path="src/lib/flatlaf-intellij-themes-3.2.5.jar"/>
+	<classpathentry kind="lib" path="src/lib/jfoenix-9.0.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
