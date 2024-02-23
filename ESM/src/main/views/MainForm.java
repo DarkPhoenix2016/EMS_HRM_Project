@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
+import main.controllers.HelperFunctions;
 import main.customeComponents.ButtonModern;
 import main.customeComponents.ImageLabel;
 import main.customeComponents.PasswordFieldModern;
@@ -15,36 +17,35 @@ import main.customeComponents.RoundedButton;
 import main.customeComponents.RoundedPanel;
 import main.customeComponents.TextFieldModern;
 import main.models.LoginAuthenticator;
+import main.views.admin.Dashborad;
+
 
 public class MainForm extends JFrame {
 	// Generated serialVersionUID to suppress the warning
     private static final long serialVersionUID = 1L;
     
     
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private int mouseX, mouseY;
 
 	/**
 	 * Launch the application.
+     * @param args
 	 */
 	public static void main(String[] args) {
 		try {
 		    UIManager.setLookAndFeel( new FlatLightLaf() );
-		    
-		} catch( Exception ex ) {
+		} catch( UnsupportedLookAndFeelException ex ) {
 		    System.err.println( "Failed to initialize LaF" );
 		}
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainForm frame = new MainForm();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    try {
+                        MainForm frame = new MainForm();
+                        frame.setVisible(true);
+                    } catch (Exception e) {
+                    }
+                });
 	}
 
 	/**
@@ -56,17 +57,10 @@ public class MainForm extends JFrame {
 		setUndecorated(true);
 		setBackground(new Color(255, 255, 255));
 		setResizable(false);
-		
-		// Calculate the center of the screen
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
-        int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
-
-        // Set the location to the center of the screen
-        setLocation(centerX, centerY);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
+		HelperFunctions.centerFrame(this);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -81,6 +75,7 @@ public class MainForm extends JFrame {
 		
 		
 		controlPanel.addMouseListener(new MouseAdapter() {
+                    @Override
 		    public void mousePressed(MouseEvent e) {
 		        mouseX = e.getXOnScreen();
 		        mouseY = e.getYOnScreen();
@@ -88,6 +83,7 @@ public class MainForm extends JFrame {
 		});
 
 		controlPanel.addMouseMotionListener(new MouseAdapter() {
+                    @Override
 		    public void mouseDragged(MouseEvent e) {
 		        int deltaX = e.getXOnScreen() - mouseX;
 		        int deltaY = e.getYOnScreen() - mouseY;
@@ -98,7 +94,14 @@ public class MainForm extends JFrame {
 		        mouseY = e.getYOnScreen();
 		    }
 		});
-        				
+        		
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                confirmExit();
+            }
+        });
+		
 		//Close button
 		JButton closeButton = new JButton("");
 		closeButton.setFocusable(false);
@@ -108,20 +111,21 @@ public class MainForm extends JFrame {
 		closeButton.setBounds(960, 0, 40, 40);
 		controlPanel.add(closeButton);
 		
-		closeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		closeButton.addActionListener((ActionEvent e) -> {
+                    confirmExit();
+                });
 		closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
             	closeButton.setBackground(new Color(255, 0, 0)); // Set hover color
             }
 
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
             	closeButton.setBackground(new Color(255, 255, 255)); // Reset to default color
             }
         });
+		
 		
 		//Minimize button
 		JButton minimizeButton = new JButton("");
@@ -133,16 +137,16 @@ public class MainForm extends JFrame {
 		controlPanel.add(minimizeButton);
 		
 		
-		minimizeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setState(JFrame.ICONIFIED);
-			}
-		});
+		minimizeButton.addActionListener((ActionEvent e) -> {
+                    setState(JFrame.ICONIFIED);
+                });
 		minimizeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 minimizeButton.setBackground(new Color(200, 200, 200)); // Set hover color
             }
 
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 minimizeButton.setBackground(new Color(255, 255, 255)); // Reset to default color
             }
@@ -192,7 +196,8 @@ public class MainForm extends JFrame {
 		RoundedPanel roundedPanel = new RoundedPanel();
 		roundedPanel.setBackground(new Color(255, 255, 255));
 		loginCardPanel.add(roundedPanel);
-        roundedPanel.setLayout(null);
+       
+                roundedPanel.setLayout(null);
 
         JButton rndbtnAdmin = new RoundedButton("Click me");
         rndbtnAdmin.setBackground(new Color(183, 224, 246));
@@ -444,65 +449,74 @@ public class MainForm extends JFrame {
         
         
      
-        rndbtnAdmin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //System.out.println("Admin button clicked");
-                loginCardPanel.setVisible(false);
-                adminLoginForm.setVisible(true);
-            }
-        });
+        rndbtnAdmin.addActionListener((ActionEvent e) -> {
+            //System.out.println("Admin button clicked");
+            loginCardPanel.setVisible(false);
+            adminLoginForm.setVisible(true);
+                });
 
-        adminBackButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //System.out.println("Admin back button clicked");
-                loginCardPanel.setVisible(true);
-                adminLoginForm.setVisible(false);
-            }
-        });
+        adminBackButton.addActionListener((ActionEvent e) -> {
+            //System.out.println("Admin back button clicked");
+            loginCardPanel.setVisible(true);
+            adminLoginForm.setVisible(false);
+                });
 
-        rndbtnEmployee.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //System.out.println("Employee button clicked");
-                loginCardPanel.setVisible(false);
-                employeeLoginForm.setVisible(true);
-            }
-        });
+        rndbtnEmployee.addActionListener((ActionEvent e) -> {
+            //System.out.println("Employee button clicked");
+            loginCardPanel.setVisible(false);
+            employeeLoginForm.setVisible(true);
+                });
 
-        employeeBackButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //System.out.println("Employee back button clicked");
-                loginCardPanel.setVisible(true);
-                employeeLoginForm.setVisible(false);
-            }
-        });  
+        employeeBackButton.addActionListener((ActionEvent e) -> {
+            //System.out.println("Employee back button clicked");
+            loginCardPanel.setVisible(true);
+            employeeLoginForm.setVisible(false);
+                });  
         
         
-        rndbtnAdminLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	String username = adminUsername.getText();
-            	char[] passwordChars = adminPassword.getPassword();
-                String password = new String(passwordChars);
-            	String result = LoginAuthenticator.authenticate(username, password, "Admin");
-            	JOptionPane.showMessageDialog(null, result);
-            	adminUsername.setText("");
-            	adminPassword.setText("");
+        rndbtnAdminLogin.addActionListener((ActionEvent e) -> {
+            String username = adminUsername.getText();
+            char[] passwordChars = adminPassword.getPassword();
+            String password = new String(passwordChars);
+            String result = LoginAuthenticator.authenticate(username, password, "Admin");
+            JOptionPane.showMessageDialog(null, result);
+            adminUsername.setText("");
+            adminPassword.setText("");
+            
+            // Check if the result contains the word "successful"
+            if (result.toLowerCase().contains("successful")) {
+                // Close the login form
+                dispose();
+                
+                // Open the admin dashboard
+                EventQueue.invokeLater(() -> {
+                    try {
+                        main.views.admin.Dashborad dashboard = new Dashborad();
+                        dashboard.setVisible(true);
+                    } catch (Exception ex) {
+                    }
+                });
             }
-        });
+                });
         
         //Employee Login data submit
-        rndbtnEmployeeLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	String username = employeeUsername.getText();
-            	char[] passwordChars = employeePassword.getPassword();
-                String password = new String(passwordChars);
-            	String result = LoginAuthenticator.authenticate(username, password, "Employee");
-            	JOptionPane.showMessageDialog(null, result);
-            	employeeUsername.setText("");
-            	employeePassword.setText("");
-            }
-        });
+        rndbtnEmployeeLogin.addActionListener((ActionEvent e) -> {
+            String username = employeeUsername.getText();
+            char[] passwordChars = employeePassword.getPassword();
+            String password = new String(passwordChars);
+            String result = LoginAuthenticator.authenticate(username, password, "Employee");
+            JOptionPane.showMessageDialog(null, result);
+            employeeUsername.setText("");
+            employeePassword.setText("");
+                });
         
         
         
 	}
+	private void confirmExit() {
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
 }

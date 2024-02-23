@@ -13,10 +13,10 @@ import java.awt.event.MouseEvent;
 public class ButtonModern extends JButton {
 
     private static final long serialVersionUID = 1L;
-    private Color textColor = new Color(0, 0, 0); // Default text color
-    private Color hoverTextColor = new Color(0, 5, 70);// Text color on hover
-    private ImageIcon icon;
-    private ImageIcon hoverIcon;
+    private final Color textColor = new Color(0, 0, 0); // Default text color
+    private final Color hoverTextColor = new Color(0, 5, 70);// Text color on hover
+    private final ImageIcon icon;
+    private final ImageIcon hoverIcon;
     
     public ButtonModern(String text, ImageIcon icon, ImageIcon hoverIcon) {
         super(text);

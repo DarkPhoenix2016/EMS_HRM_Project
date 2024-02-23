@@ -2,7 +2,7 @@ package main.customeComponents;
 import javax.swing.*;
 import java.awt.*;
 
-public class ImageLabel extends JLabel {
+public class ImageLabel extends javax.swing.JLabel {
 	// Generated serialVersionUID to suppress the warning
     private static final long serialVersionUID = 1L;
     

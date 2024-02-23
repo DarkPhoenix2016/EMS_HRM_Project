@@ -1,10 +1,8 @@
 package main.models;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -12,15 +10,10 @@ public class MySqlConnection {
 
     public static Connection connect() {
         try {
-            // Get the absolute path to the class
-            URL classUrl = MySqlConnection.class.getProtectionDomain().getCodeSource().getLocation();
-            Path classPath = Paths.get(classUrl.toURI()).getParent();
-
-            // Construct the absolute path to the text file
-            String filePath = classPath+"/src/main/models/dbInfo.txt".toString();
-
             // Read database information from the file
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            InputStream inputStream = MySqlConnection.class.getResourceAsStream("/main/models/dbInfo.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
 
             String url = reader.readLine();
             String username = reader.readLine();
