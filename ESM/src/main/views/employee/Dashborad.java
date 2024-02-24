@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main.views.admin;
+package main.views.employee;
 
+import main.views.admin.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,7 @@ public class Dashborad extends javax.swing.JFrame {
 
         titleBar = new javax.swing.JPanel();
         viewPanal = new javax.swing.JPanel();
-        menu1 = new main.customeComponents.dashboradComponents.Menu();
+        menuEmp1 = new main.customeComponents.dashboradComponents.MenuEmp();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashborad");
@@ -92,7 +93,7 @@ public class Dashborad extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuEmp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -107,7 +108,7 @@ public class Dashborad extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(viewPanal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuEmp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -141,6 +142,7 @@ public class Dashborad extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Dashborad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
         
         try {
             UIManager.setLookAndFeel( new FlatLightLaf() );
@@ -156,7 +158,7 @@ public class Dashborad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private main.customeComponents.dashboradComponents.Menu menu1;
+    private main.customeComponents.dashboradComponents.MenuEmp menuEmp1;
     private javax.swing.JPanel titleBar;
     private javax.swing.JPanel viewPanal;
     // End of variables declaration//GEN-END:variables

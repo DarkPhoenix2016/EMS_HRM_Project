@@ -16,9 +16,9 @@ import javax.swing.JFrame;
 
 import main.customeComponents.ImageLabel;
 
-public class Menu extends javax.swing.JPanel {
+public class MenuEmp extends javax.swing.JPanel {
 
-    public Menu() {
+    public MenuEmp() {
         initComponents();
         setOpaque(false);
     }
@@ -64,11 +64,16 @@ public class Menu extends javax.swing.JPanel {
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(2, 2, 59));
         jButton3.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("    Employees");
+        jButton3.setText("    Attendence");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -136,6 +141,10 @@ public class Menu extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     @Override
     protected void paintChildren(Graphics grphcs) {
