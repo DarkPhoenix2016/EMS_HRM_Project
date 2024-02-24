@@ -53,6 +53,7 @@ public class EmployeeDesignation extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Employee Designation");
         setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         setResizable(false);
 
