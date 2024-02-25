@@ -17,7 +17,7 @@ import main.customeComponents.RoundedButton;
 import main.customeComponents.RoundedPanel;
 import main.customeComponents.TextFieldModern;
 import main.models.LoginAuthenticator;
-import main.views.admin.Dashborad;
+import main.views.admin.DForm;
 
 
 public class MainForm extends JFrame {
@@ -491,7 +491,7 @@ public class MainForm extends JFrame {
                 // Open the admin dashboard
                 EventQueue.invokeLater(() -> {
                     try {
-                        main.views.admin.Dashborad dashboard = new Dashborad();
+                        main.views.admin.DForm dashboard = new DForm();
                         dashboard.setVisible(true);
                     } catch (Exception ex) {
                     }
