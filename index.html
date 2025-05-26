@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Sheet Merger</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- SheetJS (xlsx) for Excel file handling -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- ExcelJS for preserving formatting -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <!-- FileSaver.js for saving files -->
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Excel Sheet Merger</h1>
+            <p>A fully client-side tool to merge Excel workbooks and sheets</p>
+        </header>
+
+        <main>
+            <section class="file-selection">
+                <h2>1. Select Excel Files</h2>
+                <div class="file-drop-area" id="fileDropArea">
+                    <p>Drag & drop Excel files here or</p>
+                    <label for="fileInput" class="file-input-label">Browse Files</label>
+                    <input type="file" id="fileInput" accept=".xlsx" multiple hidden>
+                </div>
+                <div id="fileList" class="file-list"></div>
+            </section>
+
+            <section class="sheet-selection">
+                <h2>2. Select Sheets to Merge</h2>
+                <div id="sheetSelectionContainer" class="sheet-selection-container">
+                    <p class="instruction">Select files first to see available sheets</p>
+                </div>
+            </section>
+
+            <section class="merge-options">
+                <h2>3. Merge Options</h2>
+                <div class="option-group">
+                    <h3>Merge Type</h3>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="mergeType" value="singleSheet" checked>
+                            Merge into a single worksheet
+                        </label>
+                        <label>
+                            <input type="radio" name="mergeType" value="separateSheets">
+                            Keep as separate worksheets
+                        </label>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Formatting Options</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="preserveFillColors" checked>
+                            Preserve fill colors
+                        </label>
+                        <label>
+                            <input type="checkbox" id="preserveFontColors" checked>
+                            Preserve font colors
+                        </label>
+                        <label>
+                            <input type="checkbox" id="preserveBoldText" checked>
+                            Preserve bold text
+                        </label>
+                        <label>
+                            <input type="checkbox" id="insertHeaders" checked>
+                            Insert header rows for each section
+                        </label>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Output Filename</h3>
+                    <input type="text" id="outputFilename" value="merged_workbook" class="text-input">
+                    <span>.xlsx</span>
+                </div>
+            </section>
+
+            <section class="actions">
+                <button id="mergeButton" class="primary-button" disabled>Merge Files</button>
+                <div id="progressContainer" class="progress-container hidden">
+                    <div id="progressBar" class="progress-bar"></div>
+                    <span id="progressText">Processing...</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>This tool works entirely in your browser. Your files are never uploaded to any server.</p>
+        </footer>
+    </div>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalTitle">Message</h3>
+            <p id="modalMessage"></p>
+            <button id="modalOkButton" class="primary-button">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
